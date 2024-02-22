@@ -1,4 +1,7 @@
+import { connectDb } from "@/helper/db";
 import { NextResponse } from "next/server";
+
+connectDb()
 
 export function GET(request) {
   const users = [
@@ -22,7 +25,24 @@ export function GET(request) {
   return NextResponse.json(users);
 }
 
-export function POST() {}
+
+//post rrequest function
+//data post
+export async function POST(request){
+
+    const body=request.body;
+    console.log(body);
+    console.log(request.nextUrl.searchParams); //api/users?name="harshit"
+
+   const json=await request.json()
+   console.log(json);  // Body me jo bhi as json bhejenge
+
+
+   //const text=request.text() // Body me jab as a text bhejenge
+   //console.log(text);
+    return NextResponse.json({msg:"post user data"});
+
+}
 
 export function PUT() {}
 
